@@ -34,6 +34,8 @@
     <div class="input-group">
       <button :disabled="sending" class="primary" v-on:click="send">GO</button>
     </div>
+
+    <div>{{lastTx}}</div>
   </div>
 </template>
 
@@ -66,6 +68,12 @@ export default {
       alert(tx + ' submitted.');
 
       this.sending = false;
+      this.lastTx = null;
+
+      do {
+        await new Promise(resolve => setTimeout(resolve, 500));
+        this.lastTx = await web3.eth.getTransactionReceipt(tx);
+      } while (!this.lastTx)
     }
   },
 
@@ -76,6 +84,7 @@ export default {
 
   data () {
     return {
+      lastTx: null,
       sending: false,
       address: web3.eth.defaultAccount,
       balance: 0,
