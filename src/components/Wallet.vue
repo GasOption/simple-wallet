@@ -28,7 +28,7 @@
     </div>
 
     <div class="input-group">
-      Estimate gasprice: {{gasPriceMax / 2.5}} ~ {{ (gasPriceMax / 1.8).toFixed(0) }}, Max {{ gasPriceMax }}
+      Estimate gasprice: {{Math.max(gasPrice * 0.7, gasPriceMax / 2.5)}} ~ {{ Math.max(gasPrice * 1.1, gasPriceMax / 1.8).toFixed(0) }}, Max {{ gasPriceMax }}
     </div>
 
     <div class="input-group">
@@ -79,7 +79,8 @@ export default {
 
   async mounted() {
     this.balance = web3.fromWei(await web3.eth.getBalance(web3.eth.defaultAccount)).toNumber().toFixed(4);
-    this.gasPriceMax = (await web3.eth.getGasPrice()).toNumber() / 500000000;
+    this.gasPrice = (await web3.eth.getGasPrice()).toNumber() / 1000000000;
+    this.gasPriceMax = this.gasPrice * 2;
   },
 
   data () {
@@ -89,6 +90,7 @@ export default {
       address: web3.eth.defaultAccount,
       balance: 0,
       to: '',
+      gasPrice: null,
       gasPriceMax: null,
       insurance: false,
       data: '',
