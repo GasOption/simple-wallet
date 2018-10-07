@@ -13,7 +13,7 @@
     </div>
 
     <div class="input-group">
-      <label>Value:</label>
+      <label>ETH Value:</label>
       <input v-model="value" />
     </div>
 
