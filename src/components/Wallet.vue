@@ -18,17 +18,34 @@
     </div>
 
     <div class="input-group">
-      <label>Data:</label>
-      <input v-model="data" />
+      <label>Enable insurance.</label>
+      <input type="checkbox" v-model="insurance" />
     </div>
 
     <div class="input-group">
       <label>Gas Price Max:</label>
-      <input v-model="gasPriceMax" />
+      <input :disabled="insurance" v-model="gasPriceMax" />
     </div>
 
     <div class="input-group">
-      Estimate gasprice: {{Math.max(gasPrice * 0.7, gasPriceMax / 2.5)}} ~ {{ Math.max(gasPrice * 1.1, gasPriceMax / 1.8).toFixed(0) }}, Max {{ gasPriceMax }}
+      <label>Execute in:</label>
+      <select v-model="duration">
+        <option value="1">1 hour</option>
+        <option value="2">2 hour</option>
+        <option value="3">4 hour</option>
+        <option value="4">8 hour</option>
+        <option value="5">16 hour</option>
+        <option value="6">1 day</option>
+      </select>
+    </div>
+
+    <div class="input-group">
+      Estimate gasprice: {{Math.max(gasPrice * (1 - duration / 10), gasPriceMax / 2.5)}} ~ {{ Math.max(gasPrice * (1.1 - duration / 10), gasPriceMax / 1.8).toFixed(0) }}, Max {{ gasPriceMax }}
+    </div>
+
+    <div class="input-group">
+      <label>Data:</label>
+      <input v-model="data" />
     </div>
 
     <div class="input-group">
@@ -94,7 +111,8 @@ export default {
       gasPriceMax: null,
       insurance: false,
       data: '',
-      value: 0
+      value: 0,
+      duration: 1
     };
   }
 }
