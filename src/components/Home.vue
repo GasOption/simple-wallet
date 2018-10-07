@@ -11,7 +11,7 @@
       <input v-model="url" />
     </div>
     <div class="input-group">
-      <button class="primary" v-on:click="() => go(pk, url)">GO</button>
+      <button class="primary" v-on:click="go">GO</button>
     </div>
   </div>
 </template>
@@ -23,9 +23,9 @@ export default {
   name: 'Home',
 
   methods: {
-    go(pk, url) {
-      localStorage.setItem('pk', pk);
-      localStorage.setItem('url', url);
+    go() {
+      localStorage.setItem('pk', this.pk);
+      localStorage.setItem('url', this.url);
       router.push('wallet');
     }
   },

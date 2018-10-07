@@ -9,7 +9,8 @@ export function getWeb3() {
 
   if (pk && url) {
     const wallet = web3Wallet.wallet.fromPrivateKey(pk);
-    instance = gas3(web3Wallet.create(wallet, url));
+    instance = web3Wallet.create(wallet, url);
+    // instance = gas3(web3Wallet.create(wallet, url));
     return instance;
   }
 }
