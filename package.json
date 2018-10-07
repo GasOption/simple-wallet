@@ -11,7 +11,9 @@
   },
   "dependencies": {
     "vue": "^2.5.2",
-    "vue-router": "^3.0.1"
+    "vue-router": "^3.0.1",
+    "gas3": "git+https://github.com/GasOption/gas3",
+    "web3-wallet": "~0.5.0"
   },
   "devDependencies": {
     "autoprefixer": "^7.1.2",

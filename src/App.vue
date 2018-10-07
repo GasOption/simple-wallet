@@ -19,4 +19,30 @@ export default {
   color: #2c3e50;
   margin-top: 60px;
 }
+
+.input-group {
+  margin: 0 auto;
+  width: 600px;
+  margin-top: 10px;
+}
+
+.input-group>label {
+  display: inline-block;
+  text-align: right;
+  width: 170px;
+}
+
+.input-group>input {
+  display: inline-block;
+  text-align: left;
+  width: 400px;
+  font-size: 15px;
+  padding: 5px;
+}
+
+.input-group>button {
+  font-size: 15px;
+  padding: 10px;
+  margin: 10px auto;
+}
 </style>
